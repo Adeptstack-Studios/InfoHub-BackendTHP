@@ -5,11 +5,12 @@ app = Flask(__name__)
 
 
 @app.route('/')
+@app.route('/index')
 def welcome():
     return "<p>Hello API World!</p>"
 
 
-@app.route('/js')
+@app.route('/get')
 def send_json():
     file = open("ok.json")
     data = file.read()
@@ -17,7 +18,7 @@ def send_json():
     return data
 
 
-@app.route('/json', methods=['POST'])
+@app.route('/post', methods=['POST'])
 def receive_json():
     data = request.get_json()
     text = dumps(data)
