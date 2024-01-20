@@ -54,7 +54,7 @@ def send_json():
     pressure, altitude = getBMP280Values()
     jsondict = {"temperature": temperature, "humidity": humidity, "pressure": pressure, "altitude": altitude }
 
-    data = json.dumps(jsondict)
+    data = dumps(jsondict)
     return data
 
 
