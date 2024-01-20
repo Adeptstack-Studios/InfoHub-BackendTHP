@@ -7,4 +7,6 @@ sudo pip3 install gunicorn &&
 sudo pip3 install adafruit-circuitpython-bmp280 && 
 sudo pip3 install adafruit-circuitpython-lis3dh
 
+echo
 echo don\'t forget to activate spi interface!
+echo
