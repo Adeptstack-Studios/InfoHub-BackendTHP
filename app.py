@@ -44,7 +44,7 @@ def getBMP280Values():
     print("\nTemperatur: %0.1f *C" % sensor.temperature)
     print("Luftdruck: %0.1f hPa" % sensor.pressure)
     print("Hoehe: %0.2f m" % sensor.altitude)
-    pressure = round(sensor.temperature, 1)
+    pressure = round(sensor.pressure, 1)
     altitude = round(sensor.altitude, 2)
     return pressure, altitude
 
