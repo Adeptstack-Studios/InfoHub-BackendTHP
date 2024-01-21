@@ -29,7 +29,7 @@ You can activate this under `Interface Options` in `raspi-config`.
 sudo raspi-config
 ```
 
-However, before the server is started, you create a new screen in which the server will then run. This is done so that the server continues to run even after the ssh session has ended.
+However, before the server is started, you create a new screen in which the server then runs. This is done so that the server continues to run even after the ssh session has ended.
 ```
 screen -SO InfoHub
 ```
