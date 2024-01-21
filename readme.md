@@ -29,6 +29,11 @@ You can activate this under `Interface Options` in `raspi-config`.
 sudo raspi-config
 ```
 
+However, before the server is started, you create a new screen in which the server will then run. This is done so that the server continues to run even after the ssh session has ended.
+```
+screen -SO InfoHub
+```
+
 Once this has been done and all sensors have been connected correctly, you can put the sensor module into operation. You will find the `start.sh` script file in the repository that you need to execute to start it.
 ```
 bash start.sh
