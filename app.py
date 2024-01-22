@@ -9,15 +9,14 @@ import requests
 
 app = Flask(__name__)
 
+gpio = 4 # BCM Numbering
+#sensor = DHT11(gpio)
+sensordht = DHT22(gpio)
+
 def getDHT22Values():
-    gpio = 4 # BCM Numbering
-    #sensor = DHT11(gpio)
-    sensor = DHT22(gpio)
-    result = sensor.sample(samples=1)
+    result = sensordht.sample(samples=1)
     temp = result["temp_c"]
     humidity = result["humidity"]
-    print(f"temperature: {temp}°C")
-    print(f"humidity: {humidity}%")
     return temp, humidity
 
 def getBMP280Values():
@@ -34,18 +33,15 @@ def getBMP280Values():
     # Read sensor data
     spi = board.SPI()
     bmp_cs = digitalio.DigitalInOut(board.D5)
-    sensor = adafruit_bmp280.Adafruit_BMP280_SPI(spi, bmp_cs)
+    sensorbmp = adafruit_bmp280.Adafruit_BMP280_SPI(spi, bmp_cs)
     # This value must be changed to the current air pressure at your location
     # otherwise there will be inaccuracies
     # weather services can give you information
     # 1013.25 hPa is the mean air pressure at sea level
-    sensor.sea_level_pressure = psea
+    sensorbmp.sea_level_pressure = psea
     # Output of the measured values
-    print("\nTemperatur: %0.1f *C" % sensor.temperature)
-    print("Luftdruck: %0.1f hPa" % sensor.pressure)
-    print("Hoehe: %0.2f m" % sensor.altitude)
-    pressure = round(sensor.pressure, 1)
-    altitude = round(sensor.altitude, 2)
+    pressure = round(sensorbmp.pressure, 1)
+    altitude = round(sensorbmp.altitude, 2)
     return pressure, altitude
 
 @app.route('/GetCurrentValues')
@@ -55,6 +51,7 @@ def send_json():
     jsondict = {"temperature": temperature, "humidity": humidity, "pressure": pressure, "altitude": altitude }
 
     data = dumps(jsondict)
+    print("send")
     return data
 
 
