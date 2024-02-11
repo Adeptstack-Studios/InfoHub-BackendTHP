@@ -1,5 +1,6 @@
-# InfoHub-Backend for sensors
+# InfoHub-BackendTHP for sensors
 #### for Raspberry Pi with the following sensors: DHT22 and BMP280.
+THP => Temperature, humidity, pressure
 
 ## Installation
 Clone the GitHub repository in `/home/pi/`:
@@ -53,7 +54,7 @@ The API returns a json string that is structured like this:
 
 The values are given in the following units:
 ```
-temperature: °C
+temperature: Â°C
 humidity: %
 pressure: hPa
 altitude: m
