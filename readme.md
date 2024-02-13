@@ -16,7 +16,7 @@ sudo apt-get install git
 
 Once this is done, navigate to the cloned repository:
 ```
-cd /home/pi/InfoHub-Backend
+cd /home/pi/InfoHub-BackendTHP
 ```
 
 The repository contains the installation script, which installs all the necessary applications and libraries when you run it.
