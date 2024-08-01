@@ -21,12 +21,13 @@ altitude = 0
 
 def repeated_timer(interval, function, *args, **kwargs):
     function(*args, **kwargs)
+    doTimer()
     threading.Timer(interval, repeated_timer, [interval, function] + list(args), kwargs).start()
 
 def doTimer():
+    print("Timer ausgeführt!")
     temperature, humidity = getDHT22Values()
     pressure, altitude = getBMP280Values()
-    print("Timer ausgeführt!")
 
 def getDHT22Values():
     result = sensordht.sample(samples=1)
@@ -67,8 +68,7 @@ def send_json():
     print("send")
     return data
 
-# Beispiel: Wiederholender Timer, der alle 3 Sekunden eine Funktion ausführt
-repeated_timer(15, doTimer)
+repeated_timer(60, doTimer())
 
 if __name__ == '__main__':
     app.run()
