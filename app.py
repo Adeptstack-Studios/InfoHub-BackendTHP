@@ -6,12 +6,27 @@ import busio
 import adafruit_bmp280
 import digitalio #Using SPI
 import requests
+import threading
 
 app = Flask(__name__)
 
 gpio = 4 # BCM Numbering
 #sensor = DHT11(gpio)
 sensordht = DHT22(gpio)
+
+temperature = 0
+humidity = 0
+pressure = 0
+altitude = 0
+
+def repeated_timer(interval, function, *args, **kwargs):
+    function(*args, **kwargs)
+    threading.Timer(interval, repeated_timer, [interval, function] + list(args), kwargs).start()
+
+def doTimer():
+    temperature, humidity = getDHT22Values()
+    pressure, altitude = getBMP280Values()
+    print("Timer ausgeführt!")
 
 def getDHT22Values():
     result = sensordht.sample(samples=1)
@@ -46,14 +61,14 @@ def getBMP280Values():
 
 @app.route('/GetCurrentValues')
 def send_json():
-    temperature, humidity = getDHT22Values()
-    pressure, altitude = getBMP280Values()
     jsondict = {"temperature": temperature, "humidity": humidity, "pressure": pressure, "altitude": altitude }
 
     data = dumps(jsondict)
     print("send")
     return data
 
+# Beispiel: Wiederholender Timer, der alle 3 Sekunden eine Funktion ausführt
+repeated_timer(3, doTimer)
 
 if __name__ == '__main__':
     app.run()
