@@ -68,7 +68,7 @@ def send_json():
     return data
 
 # Beispiel: Wiederholender Timer, der alle 3 Sekunden eine Funktion ausführt
-repeated_timer(3, doTimer)
+repeated_timer(15, doTimer)
 
 if __name__ == '__main__':
     app.run()
