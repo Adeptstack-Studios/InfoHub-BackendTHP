@@ -5,7 +5,7 @@ THP => Temperature, humidity, pressure
 ## Installation
 Clone the GitHub repository in `/home/pi/`:
 ```
-git clone https://github.com/Adeptstack-Studios/InfoHub-Backend
+git clone https://github.com/Adeptstack-Studios/InfoHub-BackendTHP
 ```
 
 If git is not installed, you can install it this way:
